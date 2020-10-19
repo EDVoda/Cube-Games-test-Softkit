@@ -1,0 +1,44 @@
+.itemStyle{
+  width: 150px;
+  height: 150px;
+  border: 1px solid black;
+  margin: 1px;
+  display: flex;
+  place-content: center;
+}
+.divStyle{
+  margin: auto;
+  width: 1300px;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+.button-submit{
+  width: 150px;
+}
+
+.target{
+  border: 10px solid yellow;
+}
+.Green{
+  background-color: green;
+}
+.Red{
+  background-color: red;
+}
+.Purple{
+  background-color: purple;
+}
+.Black{
+  background-color: black;
+}
+.Pink{
+  background-color: pink;
+}
+.Blue{
+  background-color: blue;
+}
+.Brown{
+  background-color: brown;
+}
+

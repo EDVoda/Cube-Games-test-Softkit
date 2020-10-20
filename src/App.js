@@ -9,12 +9,12 @@ export class App extends Component {
 
         this.state = {
             squares: Array(6).fill(0),
+            NumBlue : this.randomInteger(1, 3)
         }
 
-        this.NumBlue = this.randomInteger(1, 3);
         this.ColorArry = ["Green", "Red", "Purple","Black","Pink","Brown"];
-        this.addBlue(this.ColorArry);
-        this.ColorArry = this.shuffle(this.ColorArry);
+        this.colorRender =  this.addBlue(this.ColorArry);
+        this.colorRender = this.shuffle(this.colorRender);
     }
 
     randomInteger(min, max) {
@@ -24,14 +24,16 @@ export class App extends Component {
 
     addBlue(colors){
         let i = 0;
-        while (i < this.NumBlue)
+        let colorRender = colors.slice();
+        while (i < this.state.NumBlue)
         {
             let k = Math.floor(Math.random() * colors.length);
-            if(colors[k] !== "Blue"){
-                colors.splice(k, 1, "Blue");
+            if(colorRender[k] !== "Blue"){
+                colorRender.splice(k, 1, "Blue");
                 i++
             }
         }
+        return colorRender;
     }
 
     handleClick = e => {
@@ -68,21 +70,23 @@ export class App extends Component {
 
     checkColor = e => {
         for(let i = 0; i< this.state.squares.length;i++){
-            if(this.ColorArry[i] !== "Blue" && this.state.squares[i]){
+            if(this.colorRender[i] !== "Blue" && this.state.squares[i]){
                 alert('Ошибка');
                 return
             }
-            if(!this.state.squares[i] && this.ColorArry[i] === "Blue" ){
+            if(!this.state.squares[i] && this.colorRender[i] === "Blue" ){
                 alert('Ошибка');
                 return
             }
         }
         alert('Все верно');
-        this.shuffle(this.ColorArry);
+
         this.setState({
             squares: Array(6).fill(0),
+            NumBlue : this.randomInteger(1, 3)
         });
-
+        this.colorRender =  this.addBlue(this.ColorArry);
+        this.shuffle(this.colorRender);
     }
 
     render() {
@@ -97,7 +101,7 @@ export class App extends Component {
                             <div key={index}
                                  onClick={this.handleClick}
                                  data-index={index}
-                                 className={'itemStyle '+ this.ColorArry[index] + addBorder}
+                                 className={'itemStyle '+ this.colorRender[index] + addBorder}
                             >
                             </div>
                         )
